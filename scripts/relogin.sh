@@ -7,7 +7,11 @@
 set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-WORKER_URL="${MI_HEALTH_WORKER_URL:-https://mi-health-mcp.zhourccc.workers.dev/mcp}"
+WORKER_URL="${MI_HEALTH_WORKER_URL:-}"
+if [ -z "$WORKER_URL" ]; then
+  echo "✗ 请设置 MI_HEALTH_WORKER_URL，例如 https://<你的worker>.workers.dev/mcp" >&2
+  exit 1
+fi
 AUTH_TOKEN="${MI_HEALTH_MCP_AUTH_TOKEN:-}"
 if [ -z "$AUTH_TOKEN" ] && [ -f "$HOME/.hermes/.env" ]; then
   AUTH_TOKEN=$(grep "^MI_HEALTH_MCP_AUTH_TOKEN=" "$HOME/.hermes/.env" | cut -d= -f2- | tr -d '"' | tr -d "'")

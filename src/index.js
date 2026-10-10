@@ -71,6 +71,10 @@ function toolError(error) {
         /\b(passToken|cUserId|serviceToken|ssecurity|cookie|authorization|token|password|secret)\b\s*[:=]\s*[^\s,;]+/gi,
         "$1=[REDACTED]",
       )
+      .replace(
+        /(["']?)(passToken|cUserId|serviceToken|ssecurity|cookie|authorization|token|password|secret)\1\s*:\s*(["'])(.*?)\3/gi,
+        "$1$2$1:$3[REDACTED]$3",
+      )
       .slice(0, 2000)
     : "请求失败；详情已隐藏";
   const result = { ok: false, error: message };
