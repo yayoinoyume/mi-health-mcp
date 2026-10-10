@@ -1,7 +1,12 @@
 name = "mi-health-mcp"
 main = "src/index.js"
 compatibility_date = "2026-10-10"
-workers_dev = true
+workers_dev = false
+
+[[routes]]
+pattern = "mihealth.yayoi.uk"
+zone_name = "yayoi.uk"
+custom_domain = true
 
 [observability]
 enabled = true
