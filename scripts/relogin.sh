@@ -80,7 +80,7 @@ secrets = {
 }
 with open('$SECRETS_FILE', 'w') as f:
     json.dump(secrets, f)
-print(f"==> 已提取凭证（userId 尾号 {byname['userId'][-4:]}，deviceId 前缀 {byname['deviceId'][:3]}）")
+print(f\"==> 已提取凭证（userId 尾号 {byname['userId'][-4:]}，deviceId 前缀 {byname['deviceId'][:3]}）\")
 "
 
 cd "$REPO_DIR"
